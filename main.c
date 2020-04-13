@@ -289,30 +289,29 @@ void list_vote()
         }
     }
 }
-
 void start_vote()
 {
     int size = V_count();
-    char name[20];
+    char user_name[20];
     int choose;
     //5. 투표하기
     //6. 현재 투표된 선택지 현황 전체 정리해서 보여주기     // 각 선택지에 투표된 수만 print한다.(익명) //나중에 실명 모드도 만들기
-    if (size == 0)  //1개라도 만들어진 투표 주제가 있는지 확인
+    if (size == 0) //1개라도 만들어진 투표 주제가 있는지 확인
     {
         printf("Nothing to vote for :(\n");
     }
     else
     {
-        char name[20];
+        char user_name[20];
         printf("Enter a user name > ");
-        scanf("%s", name);
-        if (u_search_by_name(name) == NULL)
+        scanf("%s", user_name);
+        if (u_search_by_name(user_name) == NULL)
         {
             printf("No such member :(\n");
         }
         else
         {
-            printf(":) Hello %s Would you vote?\n");
+            printf(":) Hello %s Would you vote?\n",user_name);
             T_vote *all_vote[MAX_USER];
             v_get_all(all_vote);
             for (int i = 0; i < size; i++)
@@ -320,16 +319,18 @@ void start_vote()
                 T_vote *p = all_vote[i];
                 printf("%d. %s \n", i + 1, v_getname(p));
             }
-            printf("0. Exit\n");
+            printf("0. Exit\n\n");
             printf("\nChoose Vote : ");
             scanf("%d", &choose);
-            if(choose != 0)
+            if (choose != 0)
             {
-                choose --;
+
                 T_vote *p = all_vote[choose];
-                v_start(p, name);
+                T_vote *p = v_search_by_name(v_getname(p));
+
+                v_start(p, user_name);
+                v_status(p);
             }
-            //투표하기
         }
     }
 }

@@ -3,6 +3,7 @@
 #include <string.h>
 
 #define MAX_USER 5 // 저장할 수 있는 회원 레코드 최대 갯수
+#define _CRT_SECURE_NO_WARNINGS    // fopen 보안 경고로 인한 컴파일 에러 방지
 
 typedef struct st_user
 {

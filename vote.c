@@ -108,7 +108,8 @@ char *v_getname(T_vote *p)
 }
 int *v_getamount(T_vote *p)
 {
-    return p->amount;
+    int a = p->amount;
+    return a;
 }
 char *v_getchoice(T_vote *p, int a)
 {
@@ -127,7 +128,7 @@ void v_get_all(T_vote *a[])
     }
 }
 
-void v_start(T_vote *p,char name)
+void v_start(T_vote *p,char user_name)
 {
     int choise;
     printf("%s\n", v_getname(p));
@@ -136,5 +137,14 @@ void v_start(T_vote *p,char name)
         printf("\t(%d) %s\n", i + 1, v_getchoice(p, i));
     }
     scanf("%d",&choise);
+    choise--;
     p->vote_box[choise]++;
+}
+
+void v_status(T_vote *p)
+{
+    for(int i=0;i<5;i++)
+    {
+        printf("%d. %s -> %d\n",i-1,p->choice[i],p->vote_box[i]);
+    }
 }

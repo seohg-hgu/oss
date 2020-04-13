@@ -86,7 +86,8 @@ char *u_getname(T_user *p)
 }
 int *u_getage(T_user *p)
 {
-    return p->age;
+    int i = p->age;
+    return i;
 }
 char *u_getgender(T_user *p)
 {
